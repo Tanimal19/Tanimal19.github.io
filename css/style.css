@@ -58,6 +58,7 @@
     --link-hover-bg: oklch(0.4 0.08 var(--primary-hue));
     --link-active-bg: oklch(0.35 0.07 var(--primary-hue));
     --blockquote-bg: oklch(0.2 0.02 var(--primary-hue));
+    --blockquote-bar: oklch(0.4 0.04 var(--primary-hue));
     --color-picker-range: oklch(0.4 0.04 var(--primary-hue));
     --badge-bg: oklch(0.75 0.12 var(--primary-hue));
     --text-on-light: oklch(0.25 0.02 var(--primary-hue));
@@ -93,6 +94,7 @@
     --link-hover-bg: #005068;
     --link-active-bg: #004256;
     --blockquote-bg: #0c181d;
+    --blockquote-bar: #2f4c58;
     --color-picker-range: #2f4c58;
     --badge-bg: #45bde7;
     --text-on-light: #172429;
@@ -146,6 +148,7 @@
     --link-active-bg: oklch(0.9 0.05 var(--primary-hue));
     --article-code-bg: oklch(0.95 0.02 var(--primary-hue));
     --blockquote-bg: oklch(0.98 0.005 var(--primary-hue));
+    --blockquote-bar: oklch(0.9 0.04 var(--primary-hue));
     --badge-bg: oklch(0.95 0.02 var(--primary-hue));
     --text-on-light: oklch(0.55 0.12 var(--primary-hue));
     --color-picker-range: oklch(0.95 0.02 var(--primary-hue));
@@ -175,6 +178,7 @@
     --link-active-bg: #bce6f7;
     --article-code-bg: #e1f2f9;
     --blockquote-bg: #f5f9fb;
+    --blockquote-bar: #c3e4f2;
     --badge-bg: #e1f2f9;
     --text-on-light: #007fa6;
     --color-picker-range: #e1f2f9;
@@ -1395,8 +1399,8 @@ a.article-title:active {
 }
 .article-entry blockquote {
   background: var(--blockquote-bg);
-  padding: 0 24px;
-  border-radius: 8px;
+  padding: 0 24px 0 64px;
+  border-radius: 0 8px 8px 0;
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
@@ -1413,7 +1417,25 @@ a.article-title:active {
   -webkit-flex-wrap: nowrap;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
-  margin: 1.2em 0;
+  margin: 1.2em 0 1.2em -40px;
+  -webkit-transition: background 0.15s ease-out;
+  -moz-transition: background 0.15s ease-out;
+  -ms-transition: background 0.15s ease-out;
+  transition: background 0.15s ease-out;
+  position: relative;
+}
+.article-entry blockquote blockquote {
+  background: none;
+}
+.article-entry blockquote:before {
+  content: '';
+  background: var(--blockquote-bar);
+  width: 4px;
+  position: absolute;
+  left: 40px;
+  border-radius: 2px;
+  top: 20px;
+  bottom: 20px;
   -webkit-transition: background 0.15s ease-out;
   -moz-transition: background 0.15s ease-out;
   -ms-transition: background 0.15s ease-out;

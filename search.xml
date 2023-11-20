@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>search-plugin-make</title>
+      <link href="/2023/11/19/search-plugin-make/"/>
+      <url>/2023/11/19/search-plugin-make/</url>
+      
+        <content type="html"><![CDATA[<p>當初在挑 hexo 的主題的時候，花了很多時間，最後才找到了這個我認為超漂亮的主題 — <a href="">vivia</a><br>但很可惜的是，這個主題並沒有搜尋功能，因此我就決定自己做了。<br>(話說根本不用做搜尋功能，反正又沒有文章)</p><h1 id="搜尋框"><a href="#搜尋框" class="headerlink" title="搜尋框"></a>搜尋框</h1><blockquote><p>構想 : 使用者可以輸入關鍵字</p></blockquote><p>這部份很簡單，只要建一個 html 的表格就好了</p><p>程式碼 :</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">&quot;search-box&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;search-input&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;Search&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure><h1 id="清除按鈕"><a href="#清除按鈕" class="headerlink" title="清除按鈕"></a>清除按鈕</h1><blockquote><p>構想 : 按下可以清除搜尋框的內容</p></blockquote><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">&quot;search-box&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;search-input&quot;</span> <span class="attr">class</span>=<span class="string">&quot;hidden&quot;</span>  <span class="attr">placeholder</span>=<span class="string">&quot;Search&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;clear-btn&quot;</span> <span class="attr">class</span>=<span class="string">&quot;hidden&quot;</span>&gt;</span></span><br><span class="line">        &lt;%- partial(&#x27;_icon/clear&#x27;) %&gt;       // clear button svg</span><br><span class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">&quot;search-box&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;search-input&quot;</span> <span class="attr">class</span>=<span class="string">&quot;hidden&quot;</span>  <span class="attr">placeholder</span>=<span class="string">&quot;Search&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;clear-btn&quot;</span> <span class="attr">class</span>=<span class="string">&quot;hidden&quot;</span>&gt;</span></span><br><span class="line">        &lt;%- partial(&#x27;_icon/clear&#x27;) %&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;search-btn&quot;</span> <span class="attr">class</span>=<span class="string">&quot;nav-icon&quot;</span>&gt;</span></span><br><span class="line">    &lt;%- partial(&#x27;_icon/search&#x27;) %&gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;search-result&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Blog Modify </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> guide </tag>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>TOC test</title>
       <link href="/2023/11/17/toc-test/"/>
       <url>/2023/11/17/toc-test/</url>

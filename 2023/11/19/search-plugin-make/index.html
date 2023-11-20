@@ -15,20 +15,24 @@
   
 
   
-  <title>Tag: Foo | Poorgrammer&#39;s Corner</title>
+  <title>search-plugin-make | Poorgrammer&#39;s Corner</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <meta name="description" content="tech blog make by a poorgrammer">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Poorgrammer&#39;s Corner">
-<meta property="og:url" content="http://poorgrammers.corner.com/tags/Foo/index.html">
+  <meta name="description" content="當初在挑 hexo 的主題的時候，花了很多時間，最後才找到了這個我認為超漂亮的主題 — vivia但很可惜的是，這個主題並沒有搜尋功能，因此我就決定自己做了。(話說根本不用做搜尋功能，反正又沒有文章) 搜尋框 構想 : 使用者可以輸入關鍵字  這部份很簡單，只要建一個 html 的表格就好了 程式碼 : 123&lt;form id&#x3D;&quot;search-box&quot;&gt;    &amp;l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="search-plugin-make">
+<meta property="og:url" content="http://poorgrammers.corner.com/2023/11/19/search-plugin-make/index.html">
 <meta property="og:site_name" content="Poorgrammer&#39;s Corner">
-<meta property="og:description" content="tech blog make by a poorgrammer">
+<meta property="og:description" content="當初在挑 hexo 的主題的時候，花了很多時間，最後才找到了這個我認為超漂亮的主題 — vivia但很可惜的是，這個主題並沒有搜尋功能，因此我就決定自己做了。(話說根本不用做搜尋功能，反正又沒有文章) 搜尋框 構想 : 使用者可以輸入關鍵字  這部份很簡單，只要建一個 html 的表格就好了 程式碼 : 123&lt;form id&#x3D;&quot;search-box&quot;&gt;    &amp;l">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-11-19T14:29:11.000Z">
+<meta property="article:modified_time" content="2023-11-19T17:06:53.997Z">
 <meta property="article:author" content="Tanimal">
+<meta property="article:tag" content="guide">
+<meta property="article:tag" content="hexo">
 <meta name="twitter:card" content="summary">
   
   
@@ -146,6 +150,14 @@
         <div class="sticky">
           
             
+  <div id="toc-wrap" class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Content</h3>
+      <div id="toc"></div>
+    </div>
+  </div>
+	<script src="/js/toc.js"></script>
+
 
           
             
@@ -181,44 +193,99 @@
     <div id="content-body">
        
 
-<div class="archive-main-card">
-    <div class="archive-top">
-      <div class="main-title-bar">
-        <div class="main-title-dot"></div>
-        <h1 class="article-title">Archives</h1>
-      </div>    
+<article id="post-search-plugin-make" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        search-plugin-make
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2023-11-19T14:29:11.000Z" itemprop="datePublished">2023-11-19</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/Blog-Modify/">Blog Modify</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            1.1k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/guide/" rel="tag">guide</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <p>當初在挑 hexo 的主題的時候，花了很多時間，最後才找到了這個我認為超漂亮的主題 — <a href="">vivia</a><br>但很可惜的是，這個主題並沒有搜尋功能，因此我就決定自己做了。<br>(話說根本不用做搜尋功能，反正又沒有文章)</p>
+<h1 id="搜尋框"><a href="#搜尋框" class="headerlink" title="搜尋框"></a>搜尋框</h1><blockquote>
+<p>構想 : 使用者可以輸入關鍵字</p>
+</blockquote>
+<p>這部份很簡單，只要建一個 html 的表格就好了</p>
+<p>程式碼 :</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">&quot;search-box&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;search-input&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;Search&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="清除按鈕"><a href="#清除按鈕" class="headerlink" title="清除按鈕"></a>清除按鈕</h1><blockquote>
+<p>構想 : 按下可以清除搜尋框的內容</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">&quot;search-box&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;search-input&quot;</span> <span class="attr">class</span>=<span class="string">&quot;hidden&quot;</span>  <span class="attr">placeholder</span>=<span class="string">&quot;Search&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;clear-btn&quot;</span> <span class="attr">class</span>=<span class="string">&quot;hidden&quot;</span>&gt;</span></span><br><span class="line">        &lt;%- partial(&#x27;_icon/clear&#x27;) %&gt;       // clear button svg</span><br><span class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">&quot;search-box&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;search-input&quot;</span> <span class="attr">class</span>=<span class="string">&quot;hidden&quot;</span>  <span class="attr">placeholder</span>=<span class="string">&quot;Search&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;clear-btn&quot;</span> <span class="attr">class</span>=<span class="string">&quot;hidden&quot;</span>&gt;</span></span><br><span class="line">        &lt;%- partial(&#x27;_icon/clear&#x27;) %&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;search-btn&quot;</span> <span class="attr">class</span>=<span class="string">&quot;nav-icon&quot;</span>&gt;</span></span><br><span class="line">    &lt;%- partial(&#x27;_icon/search&#x27;) %&gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;search-result&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+        
+      </div>
+
+         
     </div>
     
-    
-      
-      
-        
-        <div class="year-line">
-            <div class="year-num">2023</div>
-            <div class="dot-wrapper">
-                <div class="dot"></div>
-            </div>
-            <div class="article-count">1 article</div>
-        </div>
-      
-      <a class="archive-article-link" href="/2023/11/17/toc-test/" title="TOC test">
-        <div class="date">11-17</div>
-        <div class="line">
-            <div class="dot"></div>
-        </div>
-        <div class="title">
-            <div class="title-inner">
-                
-                    TOC test
-                
-            </div>
-        </div>
-        <div class="tags">
-            #Foo
-        </div>
-      </a>
-    
+     
   </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left  disabled "
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2023/11/17/toc-test/"
+      title="TOC test"
+     >
+
+    <p class="title-text">
+      
+        TOC test
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+ 
     </div>
     <div id="footer-wrapper">
       <footer id="footer">

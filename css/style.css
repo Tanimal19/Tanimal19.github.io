@@ -2818,7 +2818,7 @@ input[type="range"] {
   padding: 5;
   outline: none;
   height: 60%;
-  width: var(160px);
+  width: 160px;
   right: 10px;
 }
 #search-btn:hover {

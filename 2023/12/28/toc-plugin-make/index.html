@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="true" >
+<link href="/fontawesome/css/fontawesome.css" rel="stylesheet">
+<link href="/fontawesome/css/brands.css" rel="stylesheet">
+<link href="/fontawesome/css/solid.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+
+  
+  <title>為 Blog 加入文章目錄功能 | Poorgrammer&#39;s Corner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <meta name="description" content="Credit 使用、參考的網路資源 :https:&#x2F;&#x2F;github.com&#x2F;bubkoo&#x2F;hexo-tochttps:&#x2F;&#x2F;yscoder.github.io&#x2F;20150514&#x2F;hexo-toc.htmlhttps:&#x2F;&#x2F;developer.mozilla.org&#x2F;en-US&#x2F;  對於提供資源的作者們，在此表示感謝，如果資源的使用有任何不當之處，請來信告知我。I sincerely express m">
+<meta property="og:type" content="article">
+<meta property="og:title" content="為 Blog 加入文章目錄功能">
+<meta property="og:url" content="https://tanimal19.github.io/2023/12/28/toc-plugin-make/index.html">
+<meta property="og:site_name" content="Poorgrammer&#39;s Corner">
+<meta property="og:description" content="Credit 使用、參考的網路資源 :https:&#x2F;&#x2F;github.com&#x2F;bubkoo&#x2F;hexo-tochttps:&#x2F;&#x2F;yscoder.github.io&#x2F;20150514&#x2F;hexo-toc.htmlhttps:&#x2F;&#x2F;developer.mozilla.org&#x2F;en-US&#x2F;  對於提供資源的作者們，在此表示感謝，如果資源的使用有任何不當之處，請來信告知我。I sincerely express m">
+<meta property="og:locale">
+<meta property="article:published_time" content="2023-12-28T12:39:43.000Z">
+<meta property="article:modified_time" content="2023-12-28T12:39:43.070Z">
+<meta property="article:author" content="Tanimal">
+<meta property="article:tag" content="guide">
+<meta property="article:tag" content="hexo">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="shortcut icon" href="/assets/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/assets/banner.jpg" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+
+  
+  <div id="main-grid" class="shadow ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <div id="title-wrap">
+      <a href="/">
+        <div>
+          <image id="logo" src=/assets/favicon.png></image>
+        </div>
+        <div>Poorgrammer's Corner </div>
+      </a>
+    </div>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="light-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20">
+<path d="M438.5-829.913v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-829.913Zm0 747.826v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-82.087ZM877.913-438.5h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537t29.476-12.174h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T877.913-438.5Zm-747.826 0h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T82.087-521.5h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T130.087-438.5Zm660.174-290.87-34.239 32q-12.913 12.674-29.565 12.174-16.653-.5-29.327-13.174-12.674-12.673-12.554-28.826.12-16.152 12.794-28.826l33-35q12.913-12.674 30.454-12.674t30.163 12.847q12.709 12.846 12.328 30.826-.38 17.98-13.054 30.653ZM262.63-203.978l-32 34q-12.913 12.674-30.454 12.674t-30.163-12.847q-12.709-12.846-12.328-30.826.38-17.98 13.054-30.653l33.239-31q12.913-12.674 29.565-12.174 16.653.5 29.327 13.174 12.674 12.673 12.554 28.826-.12 16.152-12.794 28.826Zm466.74 33.239-32-33.239q-12.674-12.913-12.174-29.565.5-16.653 13.174-29.327 12.673-12.674 28.826-13.054 16.152-.38 28.826 12.294l35 33q12.674 12.913 12.674 30.454t-12.847 30.163q-12.846 12.709-30.826 12.328-17.98-.38-30.653-13.054ZM203.978-697.37l-34-33q-12.674-12.913-13.174-29.945-.5-17.033 12.174-29.707t31.326-13.293q18.653-.62 31.326 13.054l32 34.239q11.674 12.913 11.174 29.565-.5 16.653-13.174 29.327-12.673 12.674-28.826 12.554-16.152-.12-28.826-12.794ZM480-240q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm-.247-82q65.703 0 111.475-46.272Q637-414.544 637-480.247t-45.525-111.228Q545.95-637 480.247-637t-111.475 45.525Q323-545.95 323-480.247t45.525 111.975Q414.05-322 479.753-322ZM481-481Z"/>
+</svg></span>
+      <span class="dark-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M480.239-116.413q-152.63 0-258.228-105.478Q116.413-327.37 116.413-480q0-130.935 77.739-227.435t206.304-125.043q43.022-9.631 63.87 10.869t3.478 62.805q-8.891 22.043-14.315 44.463-5.424 22.42-5.424 46.689 0 91.694 64.326 155.879 64.325 64.186 156.218 64.186 24.369 0 46.978-4.946 22.609-4.945 44.413-14.076 42.826-17.369 62.967 1.142 20.142 18.511 10.511 61.054Q807.174-280 712.63-198.206q-94.543 81.793-232.391 81.793Zm0-95q79.783 0 143.337-40.217 63.554-40.218 95.793-108.283-15.608 4.044-31.097 5.326-15.49 1.283-31.859.805-123.706-4.066-210.777-90.539-87.071-86.473-91.614-212.092-.24-16.369.923-31.978 1.164-15.609 5.446-30.978-67.826 32.478-108.282 96.152Q211.652-559.543 211.652-480q0 111.929 78.329 190.258 78.329 78.329 190.258 78.329ZM466.13-465.891Z"/></svg></span>
+    </a>
+    <form id="search-box">
+        <input type="text" id="search-input" class="hidden"  placeholder="Search"/>
+        <span id="clear-btn" class="hidden">
+          <svg width="20px" height="20px" viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M6.96967 16.4697C6.67678 16.7626 6.67678 17.2374 6.96967 17.5303C7.26256 17.8232 7.73744 17.8232 8.03033 17.5303L6.96967 16.4697ZM13.0303 12.5303C13.3232 12.2374 13.3232 11.7626 13.0303 11.4697C12.7374 11.1768 12.2626 11.1768 11.9697 11.4697L13.0303 12.5303ZM11.9697 11.4697C11.6768 11.7626 11.6768 12.2374 11.9697 12.5303C12.2626 12.8232 12.7374 12.8232 13.0303 12.5303L11.9697 11.4697ZM18.0303 7.53033C18.3232 7.23744 18.3232 6.76256 18.0303 6.46967C17.7374 6.17678 17.2626 6.17678 16.9697 6.46967L18.0303 7.53033ZM13.0303 11.4697C12.7374 11.1768 12.2626 11.1768 11.9697 11.4697C11.6768 11.7626 11.6768 12.2374 11.9697 12.5303L13.0303 11.4697ZM16.9697 17.5303C17.2626 17.8232 17.7374 17.8232 18.0303 17.5303C18.3232 17.2374 18.3232 16.7626 18.0303 16.4697L16.9697 17.5303ZM11.9697 12.5303C12.2626 12.8232 12.7374 12.8232 13.0303 12.5303C13.3232 12.2374 13.3232 11.7626 13.0303 11.4697L11.9697 12.5303ZM8.03033 6.46967C7.73744 6.17678 7.26256 6.17678 6.96967 6.46967C6.67678 6.76256 6.67678 7.23744 6.96967 7.53033L8.03033 6.46967ZM8.03033 17.5303L13.0303 12.5303L11.9697 11.4697L6.96967 16.4697L8.03033 17.5303ZM13.0303 12.5303L18.0303 7.53033L16.9697 6.46967L11.9697 11.4697L13.0303 12.5303ZM11.9697 12.5303L16.9697 17.5303L18.0303 16.4697L13.0303 11.4697L11.9697 12.5303ZM13.0303 11.4697L8.03033 6.46967L6.96967 7.53033L11.9697 12.5303L13.0303 11.4697Z" fill="var(--not-theme-color)"/>
+</svg>
+        </span>
+    </form>
+    <span id="search-btn" class="nav-icon">
+      <svg width="22px" height="22px" viewBox="0 0 25.00 25.00" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M5.5 10.7655C5.50003 8.01511 7.44296 5.64777 10.1405 5.1113C12.8381 4.57483 15.539 6.01866 16.5913 8.55977C17.6437 11.1009 16.7544 14.0315 14.4674 15.5593C12.1804 17.0871 9.13257 16.7866 7.188 14.8415C6.10716 13.7604 5.49998 12.2942 5.5 10.7655Z" stroke="var(--not-theme-color)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M17.029 16.5295L19.5 19.0005" stroke="var(--not-theme-color)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+    </span>
+    <div id="nav-menu-btn" class="nav-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M177.37-252.282q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Zm0-186.218q-17.453 0-29.477-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T177.37-521.5h605.26q17.453 0 29.477 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T782.63-438.5H177.37Zm0-186.217q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Z"/></svg>
+    </div>
+  </nav>
+</navbar>
+<div id="search-result"></div>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/archives">Archives</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+        
+          <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+        <image src=/assets/avatar.png></image>
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">Tanimal </div>
+      <div class="dot"></div>
+      <div class="subtitle">Best Worst Programmer Ever </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://twitter.com" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://steamcommunity.com/profiles/76561199034805465/" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com/Tanimal19" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+        
+        <div class="sticky">
+          
+            
+  <div id="toc-wrap" class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Content</h3>
+      <div id="toc"></div>
+    </div>
+  </div>
+	<script src="/js/toc.js"></script>
+
+
+          
+            
+
+
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">分类</h3>
+      <div class="category-box">
+            <a class="category-link" href="/categories/Blog/">
+                Blog
+                <div class="category-count">2</div>
+            </a>
+        </div>
+    </div>
+  </div>
+
+
+          
+            
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">标签</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/guide/" rel="tag">guide</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
+    </div>
+  </div>
+
+
+          
+        </div>
+      </sidebar>
+    </div>
+    <div id="content-body">
+       
+
+<article id="post-toc-plugin-make" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        為 Blog 加入文章目錄功能
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2023-12-28T12:39:43.000Z" itemprop="datePublished">2023-12-28</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/Blog/">Blog</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            5.6k 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/guide/" rel="tag">guide</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h1 id="Credit"><a href="#Credit" class="headerlink" title="Credit"></a>Credit</h1><blockquote>
+<p>使用、參考的網路資源 :<br><a target="_blank" rel="noopener" href="https://github.com/bubkoo/hexo-toc">https://github.com/bubkoo/hexo-toc</a><br><a target="_blank" rel="noopener" href="https://yscoder.github.io/20150514/hexo-toc.html">https://yscoder.github.io/20150514/hexo-toc.html</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/">https://developer.mozilla.org/en-US/</a></p>
+</blockquote>
+<p>對於提供資源的作者們，在此表示感謝，如果資源的使用有任何不當之處，請來信告知我。<br>I sincerely express my gratitude to the authors who have provided resources. If there is any inappropriate use of the resources, please inform me by email.<br><strong>email</strong> : <a href="mailto:&#116;&#x61;&#x6e;&#x69;&#109;&#97;&#108;&#49;&#57;&#x31;&#x32;&#64;&#103;&#109;&#x61;&#105;&#108;&#x2e;&#99;&#x6f;&#109;">&#116;&#x61;&#x6e;&#x69;&#109;&#97;&#108;&#49;&#57;&#x31;&#x32;&#64;&#103;&#109;&#x61;&#105;&#108;&#x2e;&#99;&#x6f;&#109;</a></p>
+<hr>
+<h1 id="前言廢話"><a href="#前言廢話" class="headerlink" title="前言廢話"></a>前言廢話</h1><p>⚠️ 本文技術含量 &#x3D;&#x3D; 0<br>🐰 程式碼 : <a target="_blank" rel="noopener" href="https://github.com/Tanimal19/Blog-Plugin/tree/main">github</a></p>
+<p>接續上一篇的搜尋功能，這次要幫網站加入大綱(table of content)功能。<br>有時候遇到那種內容很多、又沒有大綱的文章，就覺得要一直上下滑動很麻煩，所以我覺得大綱功能應該是每個網站必備的吧(主觀想法)。<br>同樣的，這個大綱功能也是一台拼裝車，如果可以的話直接去上方參考資源看或許對學習比較有幫助?</p>
+<hr>
+<h1 id="some-HTML"><a href="#some-HTML" class="headerlink" title="some HTML"></a>some HTML</h1><p>首先決定大綱的架構是什麼樣子，具體而言，我只想讓大綱顯示<strong>一級標題</strong>和<strong>二級標題</strong>就好，不然變得太長就沒有大綱的意義了。<br>用無序列表來表示，每一個項目包含標題的內容、連到該標題的超連結，還有其下一層的標題列表。以<a href="https://tanimal19.github.io/2023/11/17/toc-test/">這篇文章</a>為例，(經過 javascript 加工後)大綱應該會長這樣 :</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;toc&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#header-1-1&quot;</span> <span class="attr">class</span>=<span class="string">&quot;toc-link level1 active reach&quot;</span>&gt;</span>header 1.1<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#header-2-1&quot;</span> <span class="attr">class</span>=<span class="string">&quot;toc-link level2&quot;</span>&gt;</span>header 2.1<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#header-2-2&quot;</span> <span class="attr">class</span>=<span class="string">&quot;toc-link level2&quot;</span>&gt;</span>header 2.2<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#header-1-2&quot;</span> <span class="attr">class</span>=<span class="string">&quot;toc-link level1&quot;</span>&gt;</span>header 1.2<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#header-1-3&quot;</span> <span class="attr">class</span>=<span class="string">&quot;toc-link level1&quot;</span>&gt;</span>header 1.3<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#header-2-1-1&quot;</span> <span class="attr">class</span>=<span class="string">&quot;toc-link level2 hidden&quot;</span>&gt;</span>header 2.1<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#header-2-2-1&quot;</span> <span class="attr">class</span>=<span class="string">&quot;toc-link level2 hidden&quot;</span>&gt;</span>header 2.2<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>知道了我們要的大綱長怎樣，接下來就要利用 JavaScript 讓瀏覽器可以把大綱「生」出來。</p>
+<hr>
+<h1 id="some-JavaScript"><a href="#some-JavaScript" class="headerlink" title="some JavaScript"></a>some JavaScript</h1><h2 id="獲取文章內標題"><a href="#獲取文章內標題" class="headerlink" title="獲取文章內標題"></a>獲取文章內標題</h2><p>接下來，要利用 JS 來讓瀏覽器可以把大綱「生」出來。<br>首先，我們需要獲取文章中的每一個<strong>一級標題</strong>和<strong>二級標題</strong> :</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> headers = <span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;.e-content h1, .e-content h2&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>有可能這篇文章根本沒有<strong>一級標題</strong>和<strong>二級標題</strong>，這時候我們就不需要顯示出大綱，也不用跑接下來的程式 :</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(headers.<span class="property">length</span> == <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> wrap = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;toc-wrap&#x27;</span>);</span><br><span class="line">    wrap.<span class="property">classList</span>.<span class="title function_">add</span>(<span class="string">&#x27;hidden&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="產生-html-元素"><a href="#產生-html-元素" class="headerlink" title="產生 html 元素"></a>產生 html 元素</h2><p>老實說，這部分的程式邏輯不太好解釋，我感覺應該可以用更精簡的方式寫出來，但我不會。<br>要解釋邏輯有點麻煩，自行去看看程式碼應該比聽我亂講還要更容易理解。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">headers.<span class="title function_">forEach</span>(<span class="keyword">function</span> (<span class="params">header</span>) &#123;</span><br><span class="line">    <span class="comment">// make link for header</span></span><br><span class="line">    <span class="keyword">var</span> link = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">    link.<span class="property">textContent</span> = header.<span class="property">textContent</span>;</span><br><span class="line">    link.<span class="property">href</span> = <span class="string">&#x27;#&#x27;</span> + header.<span class="property">id</span>;</span><br><span class="line">    link.<span class="property">classList</span>.<span class="title function_">add</span>(<span class="string">&#x27;toc-link&#x27;</span>);</span><br><span class="line">    tocLinks.<span class="title function_">push</span>(link);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> subItem = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;li&#x27;</span>);</span><br><span class="line">    subItem.<span class="title function_">appendChild</span>(link);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> level = <span class="built_in">parseInt</span>(header.<span class="property">tagName</span>.<span class="title function_">charAt</span>(<span class="number">1</span>));</span><br><span class="line">    <span class="keyword">if</span>(level === <span class="number">1</span>)&#123;</span><br><span class="line">      <span class="keyword">if</span>(prevLevel &lt; <span class="number">1</span>)&#123;</span><br><span class="line">        curLevel1 = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;ul&#x27;</span>);</span><br><span class="line">        prevItem.<span class="title function_">appendChild</span>(curLevel1);</span><br><span class="line">      &#125;</span><br><span class="line">      link.<span class="property">classList</span>.<span class="title function_">add</span>(<span class="string">&#x27;level1&#x27;</span>);</span><br><span class="line">      curLevel1.<span class="title function_">appendChild</span>(subItem);</span><br><span class="line"></span><br><span class="line">      prevLevel = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(level === <span class="number">2</span>)&#123;</span><br><span class="line">      <span class="keyword">if</span>(prevLevel &lt; <span class="number">2</span>)&#123;</span><br><span class="line">        curLevel2 = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;ul&#x27;</span>);</span><br><span class="line">        prevItem.<span class="title function_">appendChild</span>(curLevel2);</span><br><span class="line">      &#125;</span><br><span class="line">      link.<span class="property">classList</span>.<span class="title function_">add</span>(<span class="string">&#x27;level2&#x27;</span>);</span><br><span class="line">      link.<span class="property">classList</span>.<span class="title function_">add</span>(<span class="string">&#x27;hidden&#x27;</span>);</span><br><span class="line">      curLevel2.<span class="title function_">appendChild</span>(subItem);</span><br><span class="line"></span><br><span class="line">      prevLevel = <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    prevItem = subItem;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>總而言之，跑起來是沒問題的，所以就這樣吧</p>
+<h2 id="點擊時滾動到標題位置"><a href="#點擊時滾動到標題位置" class="headerlink" title="點擊時滾動到標題位置"></a>點擊時滾動到標題位置</h2><p>點擊大綱時我不希望是直接跳過去，而是要平滑的滾動到該標題所在位置，這樣比較酷，所以我們要更改超連結元素被點擊時的預設行為 :</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">link.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params">event</span>) &#123;</span><br><span class="line">    event.<span class="title function_">preventDefault</span>();</span><br><span class="line">    <span class="keyword">var</span> targetId = <span class="variable language_">this</span>.<span class="title function_">getAttribute</span>(<span class="string">&#x27;href&#x27;</span>).<span class="title function_">substring</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">var</span> targetElement = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(targetId);</span><br><span class="line">    targetElement.<span class="title function_">scrollIntoView</span>(&#123; <span class="attr">behavior</span>: <span class="string">&#x27;smooth&#x27;</span> &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>簡單來說，<code>event.preventDefault()</code>會阻止原本超連結的點擊行為，也就是跳轉頁面。<br>接著獲取該超連結元素的id <code>targetId</code> (去掉連結裡面的<code>#</code>)，並在頁面內尋找對應元素，滾動到該元素的位置。</p>
+<h2 id="highlight-當前位置"><a href="#highlight-當前位置" class="headerlink" title="highlight 當前位置"></a>highlight 當前位置</h2><p>我希望可以讓目前所在標題被 highlight，透過檢測目前頁面滾動到哪個位置，再和每個標題元素的位置做比較，來確認我們目前在哪個標題下方。<br>並且幫目前所在的<strong>二級標題</strong>(或<strong>一級標題</strong>)加上屬性 <code>active</code>，還有該標題所屬的<strong>一級標題</strong>加上屬性 <code>reach</code> :</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> scrollPosition = <span class="variable language_">window</span>.<span class="property">scrollY</span> || <span class="variable language_">document</span>.<span class="property">documentElement</span>.<span class="property">scrollTop</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* at page&#x27;s top */</span></span><br><span class="line"><span class="keyword">if</span> (scrollPosition === <span class="number">0</span>) &#123;</span><br><span class="line">    tocLinks.<span class="title function_">forEach</span>(<span class="keyword">function</span> (<span class="params">link</span>) &#123;</span><br><span class="line">        link.<span class="property">classList</span>.<span class="title function_">remove</span>(<span class="string">&#x27;active&#x27;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (link.<span class="property">classList</span>.<span class="title function_">contains</span>(<span class="string">&#x27;level1&#x27;</span>)) &#123;</span><br><span class="line">            link.<span class="property">classList</span>.<span class="title function_">remove</span>(<span class="string">&#x27;reach&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* at page&#x27;s bottom */</span></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (scrollPosition + <span class="variable language_">window</span>.<span class="property">innerHeight</span> &gt;= <span class="variable language_">document</span>.<span class="property">documentElement</span>.<span class="property">scrollHeight</span> - <span class="number">5</span>) &#123;</span><br><span class="line">    tocLinks.<span class="title function_">forEach</span>(<span class="keyword">function</span> (<span class="params">link</span>) &#123;</span><br><span class="line">        link.<span class="property">classList</span>.<span class="title function_">remove</span>(<span class="string">&#x27;active&#x27;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    tocLinks[tocLinks.<span class="property">length</span>-<span class="number">1</span>].<span class="property">classList</span>.<span class="title function_">add</span>(<span class="string">&#x27;active&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* under some header */</span></span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    headers.<span class="title function_">forEach</span>(<span class="keyword">function</span> (<span class="params">header, index</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> <span class="title class_">Top</span> = header.<span class="property">offsetTop</span> + nav.<span class="property">offsetHeight</span> - <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (scrollPosition &gt; <span class="title class_">Top</span>) &#123;</span><br><span class="line">            tocLinks.<span class="title function_">forEach</span>(<span class="keyword">function</span> (<span class="params">link</span>) &#123;</span><br><span class="line">                link.<span class="property">classList</span>.<span class="title function_">remove</span>(<span class="string">&#x27;active&#x27;</span>);</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (tocLinks[index].<span class="property">classList</span>.<span class="title function_">contains</span>(<span class="string">&#x27;level1&#x27;</span>)) &#123;</span><br><span class="line">                    link.<span class="property">classList</span>.<span class="title function_">remove</span>(<span class="string">&#x27;reach&#x27;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">            tocLinks[index].<span class="property">classList</span>.<span class="title function_">add</span>(<span class="string">&#x27;active&#x27;</span>);</span><br><span class="line">            <span class="keyword">if</span> (tocLinks[index].<span class="property">classList</span>.<span class="title function_">contains</span>(<span class="string">&#x27;level1&#x27;</span>)) &#123;</span><br><span class="line">                tocLinks[index].<span class="property">classList</span>.<span class="title function_">add</span>(<span class="string">&#x27;reach&#x27;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="自動收合／展開"><a href="#自動收合／展開" class="headerlink" title="自動收合／展開"></a>自動收合／展開</h2><p>為了確保大綱不會太長，我只需要展示所有的<strong>一級標題</strong>以及當前位置的<strong>二級標題</strong>就好。<br>只要當前的<strong>一級標題</strong>沒有包含屬性 <code>reach</code>，也就是目前不在這個標題底下，我們就把這個<strong>一級標題</strong>底下的所有<strong>二級標題</strong>都加上屬性 <code>hidden</code>，也就是隱藏起來；否則就把底下的所有<strong>二級標題</strong>都移除屬性 <code>hidden</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">tocLinks.<span class="title function_">forEach</span>(<span class="keyword">function</span> (<span class="params">link</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (link.<span class="property">classList</span>.<span class="title function_">contains</span>(<span class="string">&#x27;level1&#x27;</span>)) &#123;</span><br><span class="line">        <span class="keyword">var</span> linkWrap = link.<span class="property">parentElement</span>;</span><br><span class="line">        <span class="keyword">var</span> childlist = linkWrap.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;.level2&#x27;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (link.<span class="property">classList</span>.<span class="title function_">contains</span>(<span class="string">&#x27;reach&#x27;</span>)) &#123;</span><br><span class="line">            childlist.<span class="title function_">forEach</span>(<span class="keyword">function</span> (<span class="params">child</span>) &#123;</span><br><span class="line">                child.<span class="property">classList</span>.<span class="title function_">remove</span>(<span class="string">&#x27;hidden&#x27;</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            childlist.<span class="title function_">forEach</span>(<span class="keyword">function</span> (<span class="params">child</span>) &#123;</span><br><span class="line">                child.<span class="property">classList</span>.<span class="title function_">add</span>(<span class="string">&#x27;hidden&#x27;</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="some-CSS"><a href="#some-CSS" class="headerlink" title="some CSS"></a>some CSS</h1><p>最後就是單純的外觀設置，我是根據網站的主題 Vivia 來做配置的，所以就不多贅述。<br>要額外提的是我們要對具備屬性 <code>hidden</code> 的元素做隱藏，也就是將高度設為零 :</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.hidden</span></span><br><span class="line">  <span class="attribute">height</span>: <span class="number">0</span></span><br><span class="line">  opacity: <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>這篇文章大概就這樣，其實還可以講得更詳細，但我懶得ㄉㄚ</p>
+
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left  disabled "
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2023/11/19/search-plugin-make/"
+      title="為 Blog 加入搜尋功能"
+     >
+
+    <p class="title-text">
+      
+        為 Blog 加入搜尋功能
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2023 Tanimal<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
+        <i class="fa-solid fa-angle-up"></i>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.classList.remove('hide')
+        } else {
+            btn.classList.add('hide')
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+  <script src="/js/search.js"></script>
+</body>
+</html>
